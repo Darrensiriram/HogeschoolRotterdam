@@ -18,13 +18,13 @@ def controlNumberCheck():
 
 
 def checkDigitF():       
-    checkDigit1 = ISBN[-1]
-    if checkDigit1 == 'X':
-        checkDigit1 = 10  
-    if checkDigit1 == '.':
+    checkDigit =  list2[-1]
+    if checkDigit == 'X':
+        checkDigit = 10
+    elif checkDigit == 10:
         print('X')
         sys.exit()
-    return float(checkDigit1)
+    return int(checkDigit)
     
 def Test():
     test = (controlNumberCheck() + checkDigitF()) % 11      
@@ -36,14 +36,14 @@ def Test():
 def pointCheck():    
     for i in range (len(list2)):
         if list2[i] == '.':
-            for x in range(0,10):
+            for x in range(0,11):
                     list2[i] = x
                     if Test() == True:
                         print(x)
                         sys.exit()                       
     return(list2[x])     
 
-if not isbn.issuperset(ISBN) or len(ISBN) > 11 or len(ISBN) < 10:
+if not isbn.issuperset(ISBN) or len(ISBN) >= 11 or len(ISBN) < 10:
     print('INPUT ERROR')
     sys.exit()
 else:
@@ -51,7 +51,7 @@ else:
         pointCheck()
     else:
         if Test() == True:
-            print('Valid')
+            print('VALID')
         else:
             print('INVALID') 
 print()
